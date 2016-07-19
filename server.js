@@ -33,13 +33,15 @@ MongoClient.connect(mongoURL, function (err, dbinstance) {
 });
 
 app.use(express.static('public'));
-
-http.listen(process.env.VCAP_APP_PORT || 8010, function () {
-    if (!process.env.VCAP_APP_PORT) {
+if(process.env) {
+    console.log(JSON.stringify(process.env));
+}
+http.listen(process.env.OPENSHIFT_NODEJS_PORT || 8010, function () {
+    if (!process.env.OPENSHIFT_NODEJS_PORT) {
         console.log('server listening on http://localhost:8010');
     }
     else {
-        console.log('server listening on : %d',process.env.VCAP_APP_PORT);
+        console.log('server listening on : %d',process.env.OPENSHIFT_NODEJS_PORT);
     }
 });
 
