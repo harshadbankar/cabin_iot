@@ -1,0 +1,51 @@
+<div class="container alert-success center">
+<div class="row">
+	<div class="col-md-12">
+		<label class="alert">Cabin color indicators</label>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-2 col-md-offset-1 green">Available from last 8+ hours</div>
+	<div class="col-md-2 col-md-offset-1 orange">Available from last 1 hour</div>
+	<div class="col-md-2 col-md-offset-1 yellow">Availabe from last 1 to 2 hours </div>
+	<div class="col-md-2 col-md-offset-1 red">Occupied from last 1 hours</div>
+</div>
+</div>
+<div class="row">
+	<div class="col-md-12 col-sm-12 col-xs-12" ng-repeat="item in sensorData track by $index">
+		<label>Floor: {{$index + 1}}</label>
+
+		<div class="row" ng-repeat="greenCabin in item.green">
+			<div class="{{greenCabin.color}} col-md-1 col-sm-1 col-xs-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+					Cabin {{greenCabin.sensorId}}
+			</div>
+		</div>
+
+		<div class="row" ng-repeat="orangeCabin in item.orange">
+			<div class="{{orangeCabin.color}} col-md-1 col-sm-1 col-xs-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+				 Cabin {{orangeCabin.sensorId}}
+			</div>
+		</div>
+		<div class="row" ng-repeat="yellowCabin in item.yellow">
+			<div class="{{yellowCabin.color}} col-md-1 col-sm-1 col-xs-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+				Cabin {{yellowCabin.sensorId}}
+			</div>
+		</div>
+		<div class="row" ng-repeat="redCabin in item.red">
+			<div class="{{redCabin.color}} col-md-1 col-sm-1 col-xs-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+				Cabin {{redCabin.sensorId}}
+			</div>
+		</div>
+		<div class="row" ng-repeat="whiteCabin in item.white">
+			<div class="{{whiteCabin.color}} col-md-1 col-sm-1 col-xs-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1">
+				Cabin {{whiteCabin.sensorId}}
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<!-- <div class="row">
+{{sensorData}}
+</div> -->
+
