@@ -11,7 +11,10 @@ var databaseName = 'cabiniot';
 
 var db;
 var MongoClient = require('mongodb').MongoClient;
-var mongoURL = 'mongodb://localhost:27017/'+databaseName;
+//var mongoURL = 'mongodb://localhost:27017/'+databaseName;
+
+var mongoURL = 'mongodb://$OPENSHIFT_MONGODB_DB_HOST:$OPENSHIFT_MONGODB_DB_PORT/'+databaseName;
+
 var sensor_collection = 'sensor_collection';
 var tc = require("timezonecomplete");
 // var red="#f10606",orange="#f3952d",yellow="#f9ea05",green="#0cd829",white="#f1f1f1";
