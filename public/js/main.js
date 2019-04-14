@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:8010');
+//var socket = io.connect('http://localhost:8081');
 // 		  socket.on('news', function (data) {
 // 		    console.log(data);
 // 		    socket.emit('my other event', { my: 'data' });
@@ -8,7 +8,8 @@ var app = angular.module("cabin_iot", ['ui.router']);
 var api = {
 	"login": "/login",
 	"addSensor":"/addSensor",
-	"getSensorData":"/getSensorStatus"
+	"getSensorData":"/getSensorStatus",
+	"getSensorBatteryData":"/getSensorBatteryData"
 }
 
 var userData = {};
@@ -33,6 +34,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: '../templates/addSensor.html',
             controller: 'addSensor'
         })
+         .state('batteryStatus', {
+            url: '/batteryStatus',
+            templateUrl: '../templates/batteryStatus.html',
+            controller: 'batteryStatus'
+        })
 });
 
 app.controller('login', function ($scope, $http, $state) {
@@ -51,7 +57,7 @@ app.controller('login', function ($scope, $http, $state) {
 	        			{
 	        				if(response.data.status == 'OK') {
 	        					window.sessionStorage.setItem('username', $scope.username);
-	        					$state.go('addSensor');
+	        					$state.go('cabinStatus');
 	        				}
 	        			}
 	              },
@@ -81,6 +87,17 @@ app.controller('cabinStatus', function ($scope, $state, $http) {
 	   // },function (response) {
 	   // 		alert("Error occured while updating sensor data:"+response.data);
 	   // });
+});
+
+app.controller('batteryStatus', function ($scope, $state, $http) {
+		$http({
+	          method: 'GET',
+	          url: api.getSensorBatteryData
+	   }).then(function(response) {
+	   		$scope.sensorBattery = response.data;
+	   },function () {
+	   		alert("Error occured while getting sensor battery data");
+	   });
 });
 
 app.controller('addSensor', function ($scope, $state, $http) {
