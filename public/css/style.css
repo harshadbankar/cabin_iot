@@ -18,6 +18,9 @@ body {
 	width: 100%;
 	background-color: #0da6e0;
 } */
+nav .brand-logo {
+	padding: 16px;
+}
 
 .svg-container {
 	display: inline-block;
